@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS\style.css">
+</head>
+<body>
+    <div class="navbar navbar-expand-md bg-secondary navbar-dark text-white">
+        <div class="container">
+            <a href="#" class="navbar-brand contry" ><span class="text-warning">COUNTRY</span> </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"data-bs-target="#menu" >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav  espase kar">
+                    <li class="karim"><a href="#intro" class="nav-link">Home</a></li>
+                    <li class="karim"><a href="#faq" class="nav-link">About</a></li>
+                    <li class="karim"><a href="#youtube" class="nav-link">Contact</a></li>
+                    <li class="karim"><a href="#facebook" class="nav-link">Activite</a></li>
+                    <li class="karim"><a href="#instagram" class="nav-link">Rondico</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--main-->
+
+    <section id="hero" class="bg-secondary text-dark text-center text-sm-start py-sm-0 py-5" >
+        <div class="container">
+            <div class="d-sm-flex align-items-center justify-content-center">
+            <div class="py-3">
+                <h1 class="display-5">ALL THE <span class="text-warning"> COUNTRY</span></h1>
+                <p class="py-2">Country is a genre of popular music that originated with blues, church music such as Southern gospel and spirituals, old-time, and American folk music forms including Appalachian, Cajun, Creole, and the cowboy Western music styles of New Mexico, Red Dirt, Tejano, and Texas country</p>
+                <button class="btn btn-warning">Get Started</button>
+            
+            </div>
+            <img class="d-none d-sm-block img-fluid w-50" src="IMG\undraw_world_re_768g.svg" alt="">
+            </div>
+        </div> 
+    </section>
+    <!--services-->
+
+
+    <section class="py-5">
+        <div class="container">
+            <div class="h1 justify-content-center mb-5 row">REST COUNTRIES API</div>
+            <div class="row text-center" id="kolchi">
+            </div>
+        </div>
+    </section>
+    <!-- <h1>REST COUNTRIES API</h1> -->
+    <div id="main-container">
+        <div id="flag-container">
+            <img src="" alt="">
+        </div>
+        <div id="info-container">
+            
+               
+            
+            <!-- <p>Capital: <span id="capital"></span></p>
+            <p>Region: <span id="dialing-code"></span></p>
+            <p>Population: <span id="population"></span></p>
+            <p>continents: <span id="currencies"></span></p>
+            <p>Subregion: <span id="subregion"></span></p>-->
+        </div>
+    </div>
+    <script>
+        var img = document.querySelector("#flag-container img");
+        var capital = document.getElementById("capital");
+        var region = document.getElementById("dialing-code");
+        var population = document.getElementById("population");
+        var continents = document.getElementById("currencies");
+        var c = document.getElementById("region");
+        var subregion = document.getElementById("subregion");
+        var jareb = [];
+        var par = document.getElementById("par");
+        var option =document.getElementsByTagName("option")[0]
+        // var selected =  document.getElementById("countries");
+        var data;
+       var optionsss = "";
+       var kolchi = document.getElementById("kolchi");
+       var unique = [];
+       var dhisunique = [];
+        
+        const api_url = 'https://restcountries.com/v3.1/all';
+        
+        async function getISS(){
+        const reponse = await fetch(api_url);
+        data = await reponse.json();
+        // console.log(data[20].name.common);
+        let options = "";
+        console.log(data)
+        for(var j = 0;j<10;j++){
+        if(!unique[data[j].region]){
+            dhisunique.push(data[j].region);
+            unique[data[j].region]=1;
+        }
+    }
+        
+        for(var i=0; i<30; i++){
+            
+            // options += `<option value="${data[i].cca3}" ${[i]}>${data[i].region}</option><p id="par">${[i]}</p>`;
+        
+            
+            if(data[i]!=undefined){
+                if(data[i].capital==undefined){
+                    data[i].capital = "no capital";
+                }
+            optionsss +=`<div class="col-md-4">
+                        <div class="card bg-secondary text-light mb-3">
+                            <div class="h1 mt-3">
+                                <img src="${data[i].flags.png}" class="img" alt="">
+                            </div>
+                            <div class="" id="card-body">
+                                <h5 class="" id="capital">${data[i].name.common}</h5>
+                                <p class="text-warning" id="dialing-code">Capital : ${data[i].capital}</p>
+                                    
+                                <a href="" class="btn rtn-warning">Learn More</a>
+                            </div>
+                        </div>
+                    </div>` 
+            }
+        
+        }
+
+    
+        // selected.innerHTML = options;
+        kolchi.innerHTML = optionsss;
+        
+    }    
+    
+    getISS();
+    
+    // selected.addEventListener("change",function(){
+    //     data.forEach(el => {
+    //         if(el.cca3 == document.getElementById("countries").value){
+    //             capital.innerHTML= el.capital;
+    //             region.innerHTML = el.region;
+    //             img.src = el.flags.png;
+    //             population.innerHTML = el.population;
+    //             continents.innerHTML = el.continents;
+    //             subregion.innerHTML = el.subregion;
+    //         }
+            
+    //     });
+            
+    //     })
+
+
+
+    </script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
